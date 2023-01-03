@@ -11,6 +11,8 @@ const client = new Client({
   user: 'postgres',
   password: 'admin'
 });
+app.listen(3000, () => {console.log('Server listening on port 3000');});
+client.connect();
 
 class User {
   constructor(username, password) {
@@ -19,22 +21,11 @@ class User {
   }
 }
 
-client.connect();
-
-const query = 'SELECT * FROM users';
-
-client.query(query, (err, res) => {
-  if (err) {
-    console.log(err.stack);
-  } else {
-    console.log(res);
-    const users = res.rows;
-    console.log(users);
-  }
-});
-
 app.get('/math', (req, res) => {res.sendFile(path.join(__dirname, 'public', 'index.html'));});
 app.get('/css', (req, res) => {res.sendFile(path.join(__dirname, 'public', 'style.css'));});
+app.get('/js', (req, res) => {res.sendFile(path.join(__dirname, 'public', 'app.js'));});
+app.get('/users', (req, res) => {res.send(getUsers());});
+
 
 app.post('/math', (req, res) => {
   user = createUser(req.body);
@@ -47,13 +38,20 @@ app.post('/math', (req, res) => {
     console.error(error);
   } else {
     console.log(result);
-  }
+  }});
 });
-
-  
-});
-
-
-app.listen(3000, () => {console.log('Server listening on port 3000');});
 
 let createUser = (data) => {return new User(data.num1, data.num2);};
+
+let getUsers = () => {
+  const query = 'SELECT * FROM users';
+  client.query(query, (err, res) => {
+    if (err) {
+      console.log(err.stack);
+      return [];
+    } else {
+      console.log(JSON.stringify(res.rows[0]));
+      return JSON.stringify(res.rows[0]);
+    }
+  });
+};
