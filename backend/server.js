@@ -24,7 +24,10 @@ class User {
 app.get('/math', (req, res) => {res.sendFile(path.join(__dirname, 'public', 'index.html'));});
 app.get('/css', (req, res) => {res.sendFile(path.join(__dirname, 'public', 'style.css'));});
 app.get('/js', (req, res) => {res.sendFile(path.join(__dirname, 'public', 'app.js'));});
-app.get('/users', (req, res) => {res.send(getUsers());});
+app.get('/users', async(req, res) => {
+  rows = await getUsers();
+  res.send(rows);
+});
 
 
 app.post('/math', (req, res) => {
@@ -43,15 +46,7 @@ app.post('/math', (req, res) => {
 
 let createUser = (data) => {return new User(data.num1, data.num2);};
 
-let getUsers = () => {
-  const query = 'SELECT * FROM users';
-  client.query(query, (err, res) => {
-    if (err) {
-      console.log(err.stack);
-      return [];
-    } else {
-      console.log(JSON.stringify(res.rows[0]));
-      return JSON.stringify(res.rows[0]);
-    }
-  });
-};
+async function getUsers() {
+  res = await client.query('SELECT * FROM users') 
+      return res.rows;
+}

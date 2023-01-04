@@ -7,7 +7,7 @@ fetch('/users')
 
     data.forEach(user => {
     const userElement = document.createElement('div');
-    userElement.innerHTML = `${user.name}`;
+    userElement.innerHTML = `${user.username}`;
     userListElement.appendChild(userElement);
 });
 });
