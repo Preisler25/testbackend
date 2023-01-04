@@ -21,11 +21,14 @@ class User {
   }
 }
 
+//HTTP GET
+
 app.get('/math', (req, res) => {res.sendFile(path.join(__dirname, 'public', 'index.html'));});
 app.get('/css', (req, res) => {res.sendFile(path.join(__dirname, 'public', 'style.css'));});
 app.get('/js', (req, res) => {res.sendFile(path.join(__dirname, 'public', 'app.js'));});
 app.get('/users', async(req, res) => {rows = await getUsers();res.send(rows);});
 
+//HTTP POST
 
 app.post('/math', (req, res) => {
   user = createUser(req.body);
@@ -41,9 +44,7 @@ app.post('/math', (req, res) => {
   }});
 });
 
-let createUser = (data) => {return new User(data.num1, data.num2);};
 
-async function getUsers() {
-  res = await client.query('SELECT * FROM users') 
-      return res.rows;
-}
+//func
+let createUser = (data) => {return new User(data.num1, data.num2);};
+async function getUsers() {res = await client.query('SELECT * FROM users'); return res.rows;}
