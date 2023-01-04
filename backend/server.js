@@ -24,10 +24,7 @@ class User {
 app.get('/math', (req, res) => {res.sendFile(path.join(__dirname, 'public', 'index.html'));});
 app.get('/css', (req, res) => {res.sendFile(path.join(__dirname, 'public', 'style.css'));});
 app.get('/js', (req, res) => {res.sendFile(path.join(__dirname, 'public', 'app.js'));});
-app.get('/users', async(req, res) => {
-  rows = await getUsers();
-  res.send(rows);
-});
+app.get('/users', async(req, res) => {rows = await getUsers();res.send(rows);});
 
 
 app.post('/math', (req, res) => {
