@@ -1,18 +1,20 @@
+//express server
 const express = require('express');
-const bodyParser = require('body-parser');
 const app = express();
+app.listen(3000, () => {console.log('Server listening on port 3000');});
+
+//com
+const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 const path = require('path');
-const { Client } = require('pg');
-const client = new Client({
-  host: 'localhost',
-  port: 5432,
-  database: 'test',
-  user: 'postgres',
-  password: 'admin'
-});
-const WebSocket = require('ws');
 
+//pg
+const { Client } = require('pg');
+const client = new Client({host: 'localhost',port: 5432,database: 'test',user: 'postgres',password: 'admin'});
+client.connect();
+
+//ws
+const WebSocket = require('ws');
 const wss = new WebSocket.Server({ port: 8080 });
 
 wss.on('connection', function connection(ws) {
@@ -23,9 +25,7 @@ wss.on('connection', function connection(ws) {
   ws.send('Korte');
 });
 
-app.listen(3000, () => {console.log('Server listening on port 3000');});
-client.connect();
-
+//users
 class User {
   constructor(username, password) {
     this.username = username;
@@ -34,14 +34,12 @@ class User {
 }
 
 //HTTP GET
-
 app.get('/math', (req, res) => {res.sendFile(path.join(__dirname, 'public', 'index.html'));});
 app.get('/css', (req, res) => {res.sendFile(path.join(__dirname, 'public', 'style.css'));});
 app.get('/js', (req, res) => {res.sendFile(path.join(__dirname, 'public', 'app.js'));});
 app.get('/users', async(req, res) => {rows = await getUsers();res.send(rows);});
 
 //HTTP POST
-
 app.post('/math', (req, res) => {
   user = createUser(req.body);
   res.redirect('/math');
