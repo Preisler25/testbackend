@@ -17,14 +17,6 @@ client.connect();
 const WebSocket = require('ws');
 const wss = new WebSocket.Server({ port: 8080 });
 
-wss.on('connection', function connection(ws) {
-  ws.on('message', function incoming(message) {
-    console.log('received: %s', message);
-  });
-  ws.send('Alma');
-  ws.send('Korte');
-});
-
 //users
 class User {
   constructor(username, password) {
@@ -55,6 +47,16 @@ app.post('/math', (req, res) => {
 });
 
 
-//func
+//func test
 let createUser = (data) => {return new User(data.num1, data.num2);};
 async function getUsers() {res = await client.query('SELECT * FROM users'); return res.rows;}
+
+
+//Game
+wss.on('connection', function connection(ws) {
+  ws.on('message', function incoming(message) {
+    console.log('received: %s', message);
+  });
+  ws.send('Alma');
+  ws.send('Korte');
+});
