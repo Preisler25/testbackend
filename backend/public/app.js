@@ -31,10 +31,11 @@ ws.onclose = function (event) {
 };
 
 //geting data from server
+/*
 fetch('/users')
 .then(response => response.json())
 .then(data => {
-    console.log(data);
+   console.log(data);
     const userListElement = document.getElementById('history');
     userListElement.innerHTML = '';
 
@@ -44,6 +45,7 @@ fetch('/users')
     userListElement.appendChild(userElement);
 });
 });
+*/
 
 //draw map
 function drawMap(map) {
