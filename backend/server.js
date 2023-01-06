@@ -20,6 +20,7 @@ const wss = new WebSocket.Server({ port: 8080 });
 //game
 const game = require('./game');
 const { json } = require('express');
+const { clearInterval } = require('timers');
 
 //users
 class User {
