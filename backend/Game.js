@@ -7,17 +7,18 @@ class Enemy{
     }
 }
 
-function Game() {
+function startGame() {
     gameMap = GenMap(8, 8);
-    gameMap = GenEnemys(1, 8, 8, gameMap);
+    gameMap = GenEnemys(5, 8, 8, gameMap);
     return gameMap;
 }
 
 function GenMap(xmax, ymax) {
     tempMap = {};
-    for (let x = 0; x < xmax; i++) {
+    for (let x = 0; x < xmax; x++) {
         for (let y = 0; y < ymax; y++) {
-            tempMap[x, y] = 0;
+            let xy = String(x) + String(y);
+            tempMap[xy] = 0;
         }
     }
     return tempMap;
@@ -26,12 +27,13 @@ function GenMap(xmax, ymax) {
 function GenEnemys(num, xmax, ymax, gameMap) {
     let is_valid = false;
     let x = Math.floor(Math.random() * xmax);
-    let y = sMath.floor(Math.random() * ymax);
+    let y = Math.floor(Math.random() * ymax);
     enemys_needed = num;
 
     while (!is_valid) {
-        if (gameMap[x, y] == 0) {
-            gameMap[x, y] = new Enemy(x, y, 100, 10);
+        let xy = String(x) + String(y);
+        if (gameMap[xy] == 0) {
+            gameMap[xy] = new Enemy(x, y, 100, 10);
             enemys_needed--;
         } else {
             x = Math.floor(Math.random() * xmax);
@@ -43,3 +45,5 @@ function GenEnemys(num, xmax, ymax, gameMap) {
     }
     return gameMap;
 }
+
+module.exports = {startGame};

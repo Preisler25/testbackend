@@ -18,7 +18,8 @@ const WebSocket = require('ws');
 const wss = new WebSocket.Server({ port: 8080 });
 
 //game
-const Game = require('./game.js');
+const game = require('./game');
+const { json } = require('express');
 
 //users
 class User {
@@ -60,5 +61,6 @@ wss.on('connection', function connection(ws) {
   ws.on('message', function incoming(message) {
     console.log('received: %s', message);
   });
-  ws.send(Game.Game());
+  ws.send('game ' + JSON.stringify(game.startGame()));
 });
+
