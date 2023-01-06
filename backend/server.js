@@ -62,7 +62,6 @@ async function getUsers() {res = await client.query('SELECT * FROM users'); retu
 wss.on('connection', function connection(ws) {
   ws.on('message', function incoming(message) {
     console.log('received: %s', message);
-
   });
   setInterval(() =>{
     ws.send('game ' + JSON.stringify(game.startGame()));

@@ -1,6 +1,7 @@
 //ws
 const ws = new WebSocket('ws://localhost:8080');
 
+
 //ws connection
 ws.onopen = function () {
   ws.send('Hello Server!');
@@ -14,11 +15,14 @@ ws.onmessage = function (event) {
         console.log(map);
         drawMap(map);
       break;
+    case "history":
+        console.log(event.data);
   
     default:
       break;
   }
 };
+
 
 //server erro ws
 ws.onclose = function (event) {
