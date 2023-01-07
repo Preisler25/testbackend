@@ -63,6 +63,37 @@ function moveRight(map) {
     return map;
 }
 
+function moveEnemys(map) {
+    let rand = Math.floor(Math.random() * 4);
+    for (let key in map) {
+        if (map[key] instanceof Enemy) {
+            let enemyX = key[0];
+            let enemyY = key[1];
+            let enemyXY = key[0] + key[1];
+            let newEnemyPos = "";
+            switch (rand) {
+                case 1:
+                    newEnemyPos= String(parseInt(enemyX) + 1) + String(enemyY);
+                    break;
+                case 2:
+                    newEnemyPos= String(parseInt(enemyX) - 1) + String(enemyY);
+                    break;
+                case 3:
+                    newEnemyPos= String(enemyX) + String(parseInt(enemyY) + 1);
+                    break;
+                case 4:
+                    newEnemyPos= String(enemyX) + String(parseInt(enemyY) - 1);
+                    break;
+            }
+            if (map[newEnemyPos] == 0) {
+                map[newEnemyPos] = map[enemyXY];
+                map[enemyXY] = 0;
+            }
+        }
+    }
+    return map;
+}
+
 function getEnemyCord(map) {
     let enemys = "";
     for (let key in map) {
