@@ -4,7 +4,7 @@ const ws = new WebSocket('ws://localhost:8080');
 
 //ws connection
 ws.onopen = function () {
-  ws.send('Hello Server!');
+  ws.send('ready');
 };
 
 //activ ws
@@ -22,7 +22,6 @@ ws.onmessage = function (event) {
       break;
   }
 };
-
 
 //server erro ws
 ws.onclose = function (event) {
@@ -64,3 +63,23 @@ function drawMap(map) {
         }
     }
 }
+
+
+addEventListener('keydown', (event) => {
+    switch (event.key) {
+        case 'ArrowUp':
+            ws.send('up');
+            break;
+        case 'ArrowDown':
+            ws.send('down');
+            break;
+        case 'ArrowLeft':
+            ws.send('left');
+            break;
+        case 'ArrowRight':
+            ws.send('right');
+            break;
+        default:
+            break;
+    }
+});

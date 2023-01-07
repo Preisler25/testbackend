@@ -3,10 +3,14 @@ const express = require('express');
 const app = express();
 app.listen(3000, () => {console.log('Server listening on port 3000');});
 
+//cookie
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
+
 //com
 const bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({ extended: false }));
 const path = require('path');
+app.use(bodyParser.urlencoded({ extended: false }));
 
 //pg
 const { Client } = require('pg');
@@ -38,7 +42,7 @@ app.get('/js', (req, res) => {res.sendFile(path.join(__dirname, 'public', 'app.j
 app.get('/users', async(req, res) => {rows = await getUsers();res.send(rows);});
 
 //HTTP POST
-app.post('/math', (req, res) => {
+app.post('/reg', (req, res) => {
   user = createUser(req.body);
   res.redirect('/math');
 
@@ -59,14 +63,34 @@ async function getUsers() {res = await client.query('SELECT * FROM users'); retu
 
 
 //Game
+let ingame = false;
+let map = game.startGame();
+
 wss.on('connection', function connection(ws) {
   ws.on('message', function incoming(message) {
     console.log('received: %s', message);
-    ws.ping();
+    if (message == 'ready') {
+      ws.send('game ' + JSON.stringify(map));
+      ingame = true;
+
+      const query1 = 'INSERT INTO users (username, password) VALUES ($1, $2)';
+      const values = [user.username, user.password];
+      client.query(query1, values, (error, result) => {
+      if (error) {
+        console.error(error);
+      } else {
+        console.log(result);
+      }});
+    }
+    else if (message.split(' ')[0] == 'move') {
+      
+    }
+    if (ingame) {
+      setInterval(() =>{
+        ws.send('game ' + JSON.stringify(map));
+      }, 1000);
+    }
   });
-  setInterval(() =>{
-    ws.send('game ' + JSON.stringify(game.startGame()));
-  }, 1000);
 });
 
 
