@@ -15,7 +15,7 @@ ws.onmessage = function (event) {
         console.log(map);
         drawMap(map);
       break;
-    case "history":
+    case "over":
         console.log(event.data);
   
     default:

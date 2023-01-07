@@ -59,7 +59,7 @@ app.post('/reg', (req, res) => {
 
 //Game
 wss.on('connection', function connection(ws) {
-  let ingame = false;
+  let startGame = false;
   let isAlive = false;
   let map = game.startGame();
   ws.on('message', function incoming(message) {
@@ -68,7 +68,7 @@ wss.on('connection', function connection(ws) {
     //start game
     if (message == 'ready') {
       ws.send('game ' + JSON.stringify(map));
-      ingame = true;
+      startGame = true;
       isAlive = true;
       let enemys_pos = game.getEnemyCord(map)
       let users_pos = game.getUserCord(map)
@@ -104,16 +104,25 @@ wss.on('connection', function connection(ws) {
     }
 
     //game loop
-    if (ingame) {
-      setInterval(sendData(map, ws), 50);
-      setInterval(() => {
+    if (startGame) {
+      //sending data every 50ms
+      sendData = setInterval(()=>{
+        ws.send('game ' + JSON.stringify(map));
+      }, 50);
+
+      //moving enemys every second
+      moveE = setInterval(() => {
         map, isAlive = game.moveEnemys(map, isAlive);
-        console.log(isAlive);
       }, 1000);
-    ingame = false;
+      //seting to fales
+      startGame = false;
     }
+
+    //ending the game
     if (!isAlive) {
-      ws.send('game over');
+      ws.send('over');
+      clearInterval(sendData);
+      clearInterval(moveE);
     }
   });
 });
@@ -121,4 +130,3 @@ wss.on('connection', function connection(ws) {
 //func test
 let createUser = (data) => {return new User(data.num1, data.num2);};
 async function getUsers() {res = await client.query('SELECT * FROM users'); return res.rows;}
-let sendData = (data, ws) => {ws.send('game ' + JSON.stringify(data));}

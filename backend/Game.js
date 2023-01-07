@@ -31,7 +31,7 @@ function moveUp(map, isAlive) {
         map[playerXY] = 0;
         isAlive = false;
     }
-    return isAlive, map;
+    return map, isAlive;
 }
 
 function moveDown(map, isAlive) {
@@ -48,7 +48,7 @@ function moveDown(map, isAlive) {
         map[playerXY] = 0;
         isAlive = false;
     }
-    return isAlive, map;
+    return map, isAlive;
 }
 
 function moveLeft(map, isAlive) {
@@ -65,7 +65,7 @@ function moveLeft(map, isAlive) {
         map[playerXY] = 0;
         isAlive = false;
     }
-    return isAlive, map;
+    return map, isAlive;
 }
 
 function moveRight(map, isAlive) {
@@ -82,7 +82,7 @@ function moveRight(map, isAlive) {
         map[playerXY] = 0;
         isAlive = false;
     }
-    return isAlive, map;
+    return map, isAlive;
 }
 
 function moveEnemys(map, isAlive) {
