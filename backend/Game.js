@@ -53,8 +53,8 @@ function GenEnemys(num, xmax, ymax, gameMap) {
     let x = Math.floor(Math.random() * xmax);
     let y = Math.floor(Math.random() * ymax);
     enemys_needed = num;
-    gameMap["00"] = new Player(100, 10);
 
+    gameMap["00"] = new Player(100, 10);
 
     while (!is_valid) {
         let xy = String(x) + String(y);

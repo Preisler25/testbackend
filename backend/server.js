@@ -71,10 +71,11 @@ wss.on('connection', function connection(ws) {
       ws.send('game ' + JSON.stringify(map));
       ingame = true;
       let enemys_pos = game.getEnemyCord(map)
+      let users_pos = game.getUserCord(map)
 
       //pg seveing
       const query1 = 'INSERT INTO rounds (userid, userspos, enemyspos) VALUES ($1, $2, $3)';
-      const values = [1, "00", enemys_pos];
+      const values = [1, users_pos, enemys_pos];
       client.query(query1, values, (error, result) => {
       if (error) {
         console.error(error);
