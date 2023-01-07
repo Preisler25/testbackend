@@ -72,16 +72,18 @@ wss.on('connection', function connection(ws) {
     if (message == 'ready') {
       ws.send('game ' + JSON.stringify(map));
       ingame = true;
+      console.log(game.getEnemyCord(map));
 
-      const query1 = 'INSERT INTO users (username, password) VALUES ($1, $2)';
-      const values = [user.username, user.password];
+      /*
+      const query1 = 'INSERT INTO rounds (userid, userspos, enemyspos) VALUES ($1, $2, $3)';
+      const values = [1, "00", ""];
       client.query(query1, values, (error, result) => {
       if (error) {
         console.error(error);
       } else {
         console.log(result);
-      }});
-    }
+      }});*/
+    } 
     else if (message.split(' ')[0] == 'move') {
       
     }

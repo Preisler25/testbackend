@@ -7,6 +7,15 @@ class Enemy{
     }
 }
 
+function getEnemyCord(map) {
+    let enemys = "";
+    for (let key in map) {
+        if (map[key] instanceof Enemy) {
+            enemys += key + ",";
+        }
+    }
+}
+
 function startGame() {
     gameMap = GenMap(8, 8);
     gameMap = GenEnemys(5, 8, 8, gameMap);
@@ -47,3 +56,4 @@ function GenEnemys(num, xmax, ymax, gameMap) {
 }
 
 module.exports = {startGame};
+module.exports = {getEnemyCord};
