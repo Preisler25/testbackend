@@ -3,11 +3,17 @@ class Enemy{
         this.hp = hp;
         this.dmg = dmg;
     }
+    toString(){
+        return "E";
+    }
 }
 class Player{
     constructor(hp, dmg){
         this.hp = hp;
         this.dmg = dmg;
+    }
+    toString(){
+        return "P";
     }
 }
 

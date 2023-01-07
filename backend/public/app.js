@@ -58,7 +58,7 @@ function drawMap(map) {
         for (let i = 0; i < 8; i++) {
             ij = String(i) + String(j);
             const tileElement = document.createElement('div');
-            tileElement.innerHTML = `${map[ij]}`;
+            tileElement.innerHTML = `${map[ij].toString()}`;
             mapElement.appendChild(tileElement);
         }
     }
