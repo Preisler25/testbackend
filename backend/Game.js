@@ -2,19 +2,16 @@ class Enemy{
     constructor(hp, dmg){
         this.hp = hp;
         this.dmg = dmg;
-    }
-    toString(){
-        return "E";
+        this.name = "Enemy";
     }
 }
 class Player{
     constructor(hp, dmg){
         this.hp = hp;
         this.dmg = dmg;
+        this.name = "Player";
     }
-    toString(){
-        return "P";
-    }
+
 }
 
 function moveUp(map, isAlive) {

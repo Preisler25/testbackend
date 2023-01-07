@@ -102,7 +102,24 @@ wss.on('connection', function connection(ws) {
           break;
       }
     }
-
+    //handeling fire
+    else if (String(message).split(' ')[0] == 'fire') {
+      let fire = String(message).split(' ')[1];
+      switch(fire){
+        case 'up':
+          map = game.fireUp(map);
+          break;
+        case 'down':
+          map = game.fireDown(map);
+          break;
+        case 'left':
+          map = game.fireLeft(map);
+          break;
+        case 'right':
+          map = game.fireRight(map);
+          break;
+      }
+    }
     //game loop
     if (startGame) {
       //sending data every 50ms
