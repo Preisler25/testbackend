@@ -12,11 +12,11 @@ class Player{
 }
 
 function moveUp(map) {
-    let playerPos = getPlayerPos(map);
+    let playerPos = getUserCord(map);
     let playerX = playerPos[0];
     let playerY = playerPos[1];
     let playerXY = playerPos[0] + playerPos[1];
-    let newPlayerPos = String(playerX) + String(playerY + 1);
+    let newPlayerPos = String(playerX) + String(parseInt(playerY) + 1);
     if (map[newPlayerPos] == 0) {
         map[newPlayerPos] = map[playerXY];
         map[playerXY] = 0;
@@ -25,11 +25,11 @@ function moveUp(map) {
 }
 
 function moveDown(map) {
-    let playerPos = getPlayerPos(map);
+    let playerPos = getUserCord(map);
     let playerX = playerPos[0];
     let playerY = playerPos[1];
     let playerXY = playerPos[0] + playerPos[1];
-    let newPlayerPos = String(playerX) + String(playerY - 1);
+    let newPlayerPos = String(playerX) + String(parseInt(playerY) - 1);
     if (map[newPlayerPos] == 0) {
         map[newPlayerPos] = map[playerXY];
         map[playerXY] = 0;
@@ -38,11 +38,11 @@ function moveDown(map) {
 }
 
 function moveLeft(map) {
-    let playerPos = getPlayerPos(map);
+    let playerPos = getUserCord(map);
     let playerX = playerPos[0];
     let playerY = playerPos[1];
     let playerXY = playerPos[0] + playerPos[1];
-    let newPlayerPos = String(playerX - 1) + String(playerY);
+    let newPlayerPos = String(parseInt(playerX) - 1) + String(playerY);
     if (map[newPlayerPos] == 0) {
         map[newPlayerPos] = map[playerXY];
         map[playerXY] = 0;
@@ -51,11 +51,11 @@ function moveLeft(map) {
 }
 
 function moveRight(map) {
-    let playerPos = getPlayerPos(map);
+    let playerPos = getUserCord(map);
     let playerX = playerPos[0];
     let playerY = playerPos[1];
     let playerXY = playerPos[0] + playerPos[1];
-    let newPlayerPos = String(playerX + 1) + String(playerY);
+    let newPlayerPos = String(parseInt(playerX) + 1) + String(playerY);
     if (map[newPlayerPos] == 0) {
         map[newPlayerPos] = map[playerXY];
         map[playerXY] = 0;
