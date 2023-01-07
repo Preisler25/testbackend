@@ -83,8 +83,12 @@ wss.on('connection', function connection(ws) {
         console.log(result);
       }});
     } 
-    else if (message.split(' ')[0] == 'move') {
-      message.split(' ')[1] == 'up' ? map = game.moveUp(map) : message.split(' ')[1] == 'down' ? map = game.moveDown(map) : message.split(' ')[1] == 'left' ? map = game.moveLeft(map) : message.split(' ')[1] == 'right' ? map = game.moveRight(map) : console.log('error');
+
+    //error
+    else if (toString(message).split(' ')[0] == 'move') {
+      console.log(map);
+      toString(message).split(' ')[1] == 'up' ? map = game.moveUp(map) : toString(message).split(' ')[1] == 'down' ? map = game.moveDown(map) : toString(message).split(' ')[1] == 'left' ? map = game.moveLeft(map) : toString(message).split(' ')[1] == 'right' ? map = game.moveRight(map) : console.log('error');
+      console.log(map);
     }
     if (ingame) {
       setInterval(() =>{
