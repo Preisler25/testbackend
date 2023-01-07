@@ -64,6 +64,7 @@ function moveRight(map) {
 }
 
 function moveEnemys(map) {
+    let isAlive = true;
     for (let key in map) {
         let rand = Math.floor(Math.random() * 4);
         if (map[key] instanceof Enemy) {
@@ -89,9 +90,14 @@ function moveEnemys(map) {
                 map[newEnemyPos] = map[enemyXY];
                 map[enemyXY] = 0;
             }
+            if (map[newEnemyPos] instanceof Player) {
+                map[newEnemyPos] = map[enemyXY];
+                map[enemyXY] = 0;
+
+            }
         }
     }
-    return map;
+    return map, isAlive;
 }
 
 function getEnemyCord(map) {
@@ -122,7 +128,7 @@ function startGame() {
 
 function GenMap(xmax, ymax) {
     tempMap = {};
-    for (let x = 0; x < xmax; x++) {
+    for (let x = 0; x < math.floor(xmax/2); x++) {
         for (let y = 0; y < ymax; y++) {
             let xy = String(x) + String(y);
             tempMap[xy] = 0;
