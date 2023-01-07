@@ -104,6 +104,7 @@ wss.on('connection', function connection(ws) {
     }
     if (ingame) {
       setInterval(() =>{
+        game.moveEnemys(map);
         ws.send('game ' + JSON.stringify(map));
       }, 200);
     ingame = false;
