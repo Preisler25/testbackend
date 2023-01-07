@@ -84,7 +84,7 @@ wss.on('connection', function connection(ws) {
       }});
     } 
     else if (message.split(' ')[0] == 'move') {
-      
+      message.split(' ')[1] == 'up' ? map = game.moveUp(map) : message.split(' ')[1] == 'down' ? map = game.moveDown(map) : message.split(' ')[1] == 'left' ? map = game.moveLeft(map) : message.split(' ')[1] == 'right' ? map = game.moveRight(map) : console.log('error');
     }
     if (ingame) {
       setInterval(() =>{

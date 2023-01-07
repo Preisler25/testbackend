@@ -11,11 +11,63 @@ class Player{
     }
 }
 
+function moveUp(map) {
+    let playerPos = getPlayerPos(map);
+    let playerX = playerPos[0];
+    let playerY = playerPos[1];
+    let playerXY = playerPos[0] + playerPos[1];
+    let newPlayerPos = String(playerX) + String(playerY + 1);
+    if (map[newPlayerPos] == 0) {
+        map[newPlayerPos] = map[playerXY];
+        map[playerXY] = 0;
+    }
+    return map;
+}
+
+function moveDown(map) {
+    let playerPos = getPlayerPos(map);
+    let playerX = playerPos[0];
+    let playerY = playerPos[1];
+    let playerXY = playerPos[0] + playerPos[1];
+    let newPlayerPos = String(playerX) + String(playerY - 1);
+    if (map[newPlayerPos] == 0) {
+        map[newPlayerPos] = map[playerXY];
+        map[playerXY] = 0;
+    }
+    return map;
+}
+
+function moveLeft(map) {
+    let playerPos = getPlayerPos(map);
+    let playerX = playerPos[0];
+    let playerY = playerPos[1];
+    let playerXY = playerPos[0] + playerPos[1];
+    let newPlayerPos = String(playerX - 1) + String(playerY);
+    if (map[newPlayerPos] == 0) {
+        map[newPlayerPos] = map[playerXY];
+        map[playerXY] = 0;
+    }
+    return map;
+}
+
+function moveRight(map) {
+    let playerPos = getPlayerPos(map);
+    let playerX = playerPos[0];
+    let playerY = playerPos[1];
+    let playerXY = playerPos[0] + playerPos[1];
+    let newPlayerPos = String(playerX + 1) + String(playerY);
+    if (map[newPlayerPos] == 0) {
+        map[newPlayerPos] = map[playerXY];
+        map[playerXY] = 0;
+    }
+    return map;
+}
+
 function getEnemyCord(map) {
     let enemys = "";
     for (let key in map) {
         if (map[key] instanceof Enemy) {
-            enemys += key;
+            enemys += key + ",";
         }
     }
     return enemys;
@@ -25,7 +77,7 @@ function getPlayerPos(map) {
     let player = "";
     for (let key in map) {
         if (map[key] instanceof Player) {
-            player += key + ",";
+            player += key;
         }
     }
     return player;
@@ -72,4 +124,4 @@ function GenEnemys(num, xmax, ymax, gameMap) {
     return gameMap;
 }
 
-module.exports = {startGame, getEnemyCord, getPlayerPos};
+module.exports = {startGame, getEnemyCord, getPlayerPos, moveDown, moveUp, moveLeft, moveRight};

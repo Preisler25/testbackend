@@ -68,16 +68,16 @@ function drawMap(map) {
 addEventListener('keydown', (event) => {
     switch (event.key) {
         case 'ArrowUp':
-            ws.send('up');
+            ws.send('move up');
             break;
         case 'ArrowDown':
-            ws.send('down');
+            ws.send('move down');
             break;
         case 'ArrowLeft':
-            ws.send('left');
+            ws.send('move left');
             break;
         case 'ArrowRight':
-            ws.send('right');
+            ws.send('move right');
             break;
         default:
             break;
