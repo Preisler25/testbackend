@@ -73,7 +73,7 @@ function getEnemyCord(map) {
     return enemys;
 }
 
-function getPlayerPos(map) {
+function getUserCord(map) {
     let player = "";
     for (let key in map) {
         if (map[key] instanceof Player) {
@@ -124,4 +124,4 @@ function GenEnemys(num, xmax, ymax, gameMap) {
     return gameMap;
 }
 
-module.exports = {startGame, getEnemyCord, getPlayerPos, moveDown, moveUp, moveLeft, moveRight};
+module.exports = {startGame, getEnemyCord, getUserCord, moveDown, moveUp, moveLeft, moveRight};
