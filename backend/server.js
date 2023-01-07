@@ -112,7 +112,8 @@ wss.on('connection', function connection(ws) {
         ws.send('game ' + JSON.stringify(map));
       }, 50);
       setInterval(() => {
-        game.moveEnemys(map);
+        map, isAlive = game.moveEnemys(map);
+        console.log(isAlive);
       }, 1000);
     ingame = false;
     }

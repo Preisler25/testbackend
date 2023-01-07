@@ -93,7 +93,7 @@ function moveEnemys(map) {
             if (map[newEnemyPos] instanceof Player) {
                 map[newEnemyPos] = map[enemyXY];
                 map[enemyXY] = 0;
-
+                isAlive = false;
             }
         }
     }
@@ -128,7 +128,7 @@ function startGame() {
 
 function GenMap(xmax, ymax) {
     tempMap = {};
-    for (let x = 0; x < Math.floor(xmax/2); x++) {
+    for (let x = 0; x < xmax; x++) {
         for (let y = 0; y < ymax; y++) {
             let xy = String(x) + String(y);
             tempMap[xy] = 0;
@@ -139,7 +139,7 @@ function GenMap(xmax, ymax) {
 
 function GenEnemys(num, xmax, ymax, gameMap) {
     let is_valid = false;
-    let x = Math.floor(Math.random() * xmax);
+    let x = Math.floor(Math.random() * Math.floor(xmax/2));
     let y = Math.floor(Math.random() * ymax);
     enemys_needed = num;
 
