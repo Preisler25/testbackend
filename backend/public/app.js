@@ -54,8 +54,8 @@ fetch('/users')
 function drawMap(map) {
     const mapElement = document.getElementById('cont');
     mapElement.innerHTML = '';
-    for (let i = 0; i < 8; i++) {
-        for (let j = 0; j < 8; j++) {
+    for (let j = 7; -1 < j; j--) {
+        for (let i = 0; i < 8; i++) {
             ij = String(i) + String(j);
             const tileElement = document.createElement('div');
             tileElement.innerHTML = `${map[ij]}`;

@@ -38,6 +38,7 @@ class User {
 app.get('/', (req, res) => {res.sendFile(path.join(__dirname, 'public', 'game.html'));});
 app.get('/math', (req, res) => {res.sendFile(path.join(__dirname, 'public', 'index.html'));});
 app.get('/css', (req, res) => {res.sendFile(path.join(__dirname, 'public', 'style.css'));});
+app.get('/cssG', (req, res) => {res.sendFile(path.join(__dirname, 'public', 'game.css'));});
 app.get('/js', (req, res) => {res.sendFile(path.join(__dirname, 'public', 'app.js'));});
 app.get('/users', async(req, res) => {rows = await getUsers();res.send(rows);});
 
@@ -104,7 +105,8 @@ wss.on('connection', function connection(ws) {
     if (ingame) {
       setInterval(() =>{
         ws.send('game ' + JSON.stringify(map));
-      }, 1000);
+      }, 200);
+    ingame = false;
     }
   });
 });
