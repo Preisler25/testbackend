@@ -61,28 +61,26 @@ app.post('/reg', (req, res) => {
 let createUser = (data) => {return new User(data.num1, data.num2);};
 async function getUsers() {res = await client.query('SELECT * FROM users'); return res.rows;}
 
-
 //Game
-let ingame = false;
-let map = game.startGame();
-
 wss.on('connection', function connection(ws) {
+  let ingame = false;
+  let map = game.startGame();
   ws.on('message', function incoming(message) {
     console.log('received: %s', message);
     if (message == 'ready') {
       ws.send('game ' + JSON.stringify(map));
       ingame = true;
-      console.log(game.getEnemyCord(map));
+      let enemys = game.getEnemyCord(map)
 
-      /*
+      //pg seveing
       const query1 = 'INSERT INTO rounds (userid, userspos, enemyspos) VALUES ($1, $2, $3)';
-      const values = [1, "00", ""];
+      const values = [1, "00", enemys];
       client.query(query1, values, (error, result) => {
       if (error) {
         console.error(error);
       } else {
         console.log(result);
-      }});*/
+      }});
     } 
     else if (message.split(' ')[0] == 'move') {
       

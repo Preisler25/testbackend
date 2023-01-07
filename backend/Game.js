@@ -1,7 +1,5 @@
 class Enemy{
-    constructor(x, y, hp, dmg){
-        this.x = x;
-        this.y = y;
+    constructor(hp, dmg){
         this.hp = hp;
         this.dmg = dmg;
     }
@@ -14,6 +12,7 @@ function getEnemyCord(map) {
             enemys += key + ",";
         }
     }
+    return enemys;
 }
 
 function startGame() {
@@ -42,7 +41,7 @@ function GenEnemys(num, xmax, ymax, gameMap) {
     while (!is_valid) {
         let xy = String(x) + String(y);
         if (gameMap[xy] == 0) {
-            gameMap[xy] = new Enemy(x, y, 100, 10);
+            gameMap[xy] = new Enemy(100, 10);
             enemys_needed--;
         } else {
             x = Math.floor(Math.random() * xmax);
@@ -55,5 +54,4 @@ function GenEnemys(num, xmax, ymax, gameMap) {
     return gameMap;
 }
 
-module.exports = {startGame};
-module.exports = {getEnemyCord};
+module.exports = {startGame, getEnemyCord};
