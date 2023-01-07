@@ -61,10 +61,12 @@ app.post('/reg', (req, res) => {
 //func test
 let createUser = (data) => {return new User(data.num1, data.num2);};
 async function getUsers() {res = await client.query('SELECT * FROM users'); return res.rows;}
+let sendData = (data, ws) => {ws.send('game ' + JSON.stringify(data));}
 
 //Game
 wss.on('connection', function connection(ws) {
   let ingame = false;
+  let isAlive = false;
   let map = game.startGame();
   ws.on('message', function incoming(message) {
     console.log('received: %s', message);
@@ -73,6 +75,7 @@ wss.on('connection', function connection(ws) {
     if (message == 'ready') {
       ws.send('game ' + JSON.stringify(map));
       ingame = true;
+      isAlive = true;
       let enemys_pos = game.getEnemyCord(map)
       let users_pos = game.getUserCord(map)
 
@@ -92,30 +95,31 @@ wss.on('connection', function connection(ws) {
       let move = String(message).split(' ')[1];
       switch(move){
         case 'up':
-          map, isAlive = game.moveUp(map);
+          map, isAlive = game.moveUp(map, isAlive);
           break;
         case 'down':
-          map, isAlive = game.moveDown(map);
+          map, isAlive = game.moveDown(map, isAlive);
           break;
         case 'left':
-          map, isAlive = game.moveLeft(map);
+          map, isAlive = game.moveLeft(map, isAlive);
           break;
         case 'right':
-          map, isAlive = game.moveRight(map);
+          map, isAlive = game.moveRight(map, isAlive);
           break;
       }
     }
 
     //game loop
     if (ingame) {
-      setInterval(() =>{
-        ws.send('game ' + JSON.stringify(map));
-      }, 50);
+      setInterval(sendData(map, ws), 50);
       setInterval(() => {
-        map, isAlive = game.moveEnemys(map);
+        map, isAlive = game.moveEnemys(map, isAlive);
         console.log(isAlive);
       }, 1000);
     ingame = false;
+    }
+    if (!isAlive) {
+      ws.send('game over');
     }
   });
 });

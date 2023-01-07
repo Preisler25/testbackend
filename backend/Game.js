@@ -17,7 +17,7 @@ class Player{
     }
 }
 
-function moveUp(map) {
+function moveUp(map, isAlive) {
     let playerPos = getUserCord(map);
     let playerX = playerPos[0];
     let playerY = playerPos[1];
@@ -34,7 +34,7 @@ function moveUp(map) {
     return isAlive, map;
 }
 
-function moveDown(map) {
+function moveDown(map, isAlive) {
     let playerPos = getUserCord(map);
     let playerX = playerPos[0];
     let playerY = playerPos[1];
@@ -51,7 +51,7 @@ function moveDown(map) {
     return isAlive, map;
 }
 
-function moveLeft(map) {
+function moveLeft(map, isAlive) {
     let playerPos = getUserCord(map);
     let playerX = playerPos[0];
     let playerY = playerPos[1];
@@ -68,7 +68,7 @@ function moveLeft(map) {
     return isAlive, map;
 }
 
-function moveRight(map) {
+function moveRight(map, isAlive) {
     let playerPos = getUserCord(map);
     let playerX = playerPos[0];
     let playerY = playerPos[1];
@@ -85,7 +85,7 @@ function moveRight(map) {
     return isAlive, map;
 }
 
-function moveEnemys(map) {
+function moveEnemys(map, isAlive) {
     let isAlive = true;
     for (let key in map) {
         let rand = Math.floor(Math.random() * 4);
