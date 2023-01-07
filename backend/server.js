@@ -84,10 +84,9 @@ wss.on('connection', function connection(ws) {
       }});
     } 
 
-    //error
-    else if (toString(message).split(' ')[0] == 'move') {
+    else if (String(message).split(' ')[0] == 'move') {
       console.log(map);
-      toString(message).split(' ')[1] == 'up' ? map = game.moveUp(map) : toString(message).split(' ')[1] == 'down' ? map = game.moveDown(map) : toString(message).split(' ')[1] == 'left' ? map = game.moveLeft(map) : toString(message).split(' ')[1] == 'right' ? map = game.moveRight(map) : console.log('error');
+      String(message).split(' ')[1] == 'up' ? map = game.moveUp(map) : String(message).split(' ')[1] == 'down' ? map = game.moveDown(map) : String(message).split(' ')[1] == 'left' ? map = game.moveLeft(map) : String(message).split(' ')[1] == 'right' ? map = game.moveRight(map) : console.log('error');
       console.log(map);
     }
     if (ingame) {
