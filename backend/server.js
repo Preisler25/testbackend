@@ -68,6 +68,8 @@ wss.on('connection', function connection(ws) {
   let map = game.startGame();
   ws.on('message', function incoming(message) {
     console.log('received: %s', message);
+
+    //start game
     if (message == 'ready') {
       ws.send('game ' + JSON.stringify(map));
       ingame = true;
@@ -85,6 +87,7 @@ wss.on('connection', function connection(ws) {
       }});
     } 
 
+    //movement control
     else if (String(message).split(' ')[0] == 'move') {
       let move = String(message).split(' ')[1];
       switch(move){
@@ -102,15 +105,16 @@ wss.on('connection', function connection(ws) {
           break;
       }
     }
+
+    //game loop
     if (ingame) {
       setInterval(() =>{
-        game.moveEnemys(map);
         ws.send('game ' + JSON.stringify(map));
-      }, 200);
+      }, 50);
+      setInterval(() => {
+        game.moveEnemys(map);
+      }, 1000);
     ingame = false;
     }
   });
 });
-
-
-//func test
