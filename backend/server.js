@@ -57,12 +57,6 @@ app.post('/reg', (req, res) => {
   }});
 });
 
-
-//func test
-let createUser = (data) => {return new User(data.num1, data.num2);};
-async function getUsers() {res = await client.query('SELECT * FROM users'); return res.rows;}
-let sendData = (data, ws) => {ws.send('game ' + JSON.stringify(data));}
-
 //Game
 wss.on('connection', function connection(ws) {
   let ingame = false;
@@ -123,3 +117,8 @@ wss.on('connection', function connection(ws) {
     }
   });
 });
+
+//func test
+let createUser = (data) => {return new User(data.num1, data.num2);};
+async function getUsers() {res = await client.query('SELECT * FROM users'); return res.rows;}
+let sendData = (data, ws) => {ws.send('game ' + JSON.stringify(data));}

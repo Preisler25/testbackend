@@ -86,7 +86,6 @@ function moveRight(map, isAlive) {
 }
 
 function moveEnemys(map, isAlive) {
-    let isAlive = true;
     for (let key in map) {
         let rand = Math.floor(Math.random() * 4);
         if (map[key] instanceof Enemy) {
