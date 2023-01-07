@@ -4,17 +4,33 @@ class Enemy{
         this.dmg = dmg;
     }
 }
+class Player{
+    constructor(hp, dmg){
+        this.hp = hp;
+        this.dmg = dmg;
+    }
+}
 
 function getEnemyCord(map) {
     let enemys = "";
     for (let key in map) {
         if (map[key] instanceof Enemy) {
-            enemys += key + ",";
+            enemys += key;
         }
     }
     return enemys;
 }
 
+function getPlayerPos(map) {
+    let player = "";
+    for (let key in map) {
+        if (map[key] instanceof Player) {
+            player += key + ",";
+        }
+    }
+    return player;
+}
+    
 function startGame() {
     gameMap = GenMap(8, 8);
     gameMap = GenEnemys(5, 8, 8, gameMap);
@@ -37,6 +53,8 @@ function GenEnemys(num, xmax, ymax, gameMap) {
     let x = Math.floor(Math.random() * xmax);
     let y = Math.floor(Math.random() * ymax);
     enemys_needed = num;
+    gameMap["00"] = new Player(100, 10);
+
 
     while (!is_valid) {
         let xy = String(x) + String(y);
@@ -54,4 +72,4 @@ function GenEnemys(num, xmax, ymax, gameMap) {
     return gameMap;
 }
 
-module.exports = {startGame, getEnemyCord};
+module.exports = {startGame, getEnemyCord, getPlayerPos};
