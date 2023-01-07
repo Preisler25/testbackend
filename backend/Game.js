@@ -64,24 +64,24 @@ function moveRight(map) {
 }
 
 function moveEnemys(map) {
-    let rand = Math.floor(Math.random() * 4);
     for (let key in map) {
+        let rand = Math.floor(Math.random() * 4);
         if (map[key] instanceof Enemy) {
             let enemyX = key[0];
             let enemyY = key[1];
             let enemyXY = key[0] + key[1];
             let newEnemyPos = "";
             switch (rand) {
-                case 1:
+                case 0:
                     newEnemyPos= String(parseInt(enemyX) + 1) + String(enemyY);
                     break;
-                case 2:
+                case 1:
                     newEnemyPos= String(parseInt(enemyX) - 1) + String(enemyY);
                     break;
-                case 3:
+                case 2:
                     newEnemyPos= String(enemyX) + String(parseInt(enemyY) + 1);
                     break;
-                case 4:
+                case 3:
                     newEnemyPos= String(enemyX) + String(parseInt(enemyY) - 1);
                     break;
             }
