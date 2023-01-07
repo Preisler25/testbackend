@@ -92,16 +92,16 @@ wss.on('connection', function connection(ws) {
       let move = String(message).split(' ')[1];
       switch(move){
         case 'up':
-          map = game.moveUp(map);
+          map, isAlive = game.moveUp(map);
           break;
         case 'down':
-          map = game.moveDown(map);
+          map, isAlive = game.moveDown(map);
           break;
         case 'left':
-          map = game.moveLeft(map);
+          map, isAlive = game.moveLeft(map);
           break;
         case 'right':
-          map = game.moveRight(map);
+          map, isAlive = game.moveRight(map);
           break;
       }
     }
