@@ -128,7 +128,7 @@ function startGame() {
 
 function GenMap(xmax, ymax) {
     tempMap = {};
-    for (let x = 0; x < math.floor(xmax/2); x++) {
+    for (let x = 0; x < Math.floor(xmax/2); x++) {
         for (let y = 0; y < ymax; y++) {
             let xy = String(x) + String(y);
             tempMap[xy] = 0;
