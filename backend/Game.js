@@ -155,4 +155,4 @@ function GenEnemys(num, xmax, ymax, gameMap) {
     return gameMap;
 }
 
-module.exports = {startGame, getEnemyCord, getUserCord, moveDown, moveUp, moveLeft, moveRight};
+module.exports = {startGame, getEnemyCord, getUserCord, moveDown, moveUp, moveLeft, moveRight, moveEnemys};
