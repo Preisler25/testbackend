@@ -11,7 +11,14 @@ class Player{
         this.dmg = dmg;
         this.name = "Player";
     }
+}
 
+class ball{
+    constructor(hp, dmg){
+        this.hp = hp;
+        this.dmg = dmg;
+        this.name = "ball";
+    }
 }
 
 function moveUp(map, isAlive) {
