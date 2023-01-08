@@ -41,6 +41,9 @@ app.get('/css', (req, res) => {res.sendFile(path.join(__dirname, 'public', 'styl
 app.get('/cssG', (req, res) => {res.sendFile(path.join(__dirname, 'public', 'game.css'));});
 app.get('/js', (req, res) => {res.sendFile(path.join(__dirname, 'public', 'app.js'));});
 app.get('/users', async(req, res) => {rows = await getUsers();res.send(rows);});
+app.get('/char', (req, res) => {res.sendFile(path.join(__dirname, 'public', 'karakter.png'));});
+app.get('/enemy', (req, res) => {res.sendFile(path.join(__dirname, 'public', 'karakter.png'));});
+app.get('/ball', (req, res) => {res.sendFile(path.join(__dirname, 'public', 'karakter.png'));});
 
 //HTTP POST
 app.post('/reg', (req, res) => {

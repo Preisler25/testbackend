@@ -58,11 +58,14 @@ function drawMap(map) {
         for (let i = 0; i < 8; i++) {
             ij = String(i) + String(j);
             const tileElement = document.createElement('div');
+            const img = document.createElement('img');
             if (map[ij] == 0) {
                 tileElement.innerHTML = '';
             }
             else{
                 tileElement.innerHTML = `${map[ij].name}`;
+                img.src = map[ij].img;
+                tileElement.appendChild(img);
             }
             mapElement.appendChild(tileElement);
         }

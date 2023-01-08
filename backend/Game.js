@@ -3,6 +3,7 @@ class Enemy{
         this.hp = hp;
         this.dmg = dmg;
         this.name = "Enemy";
+        this.src = "./enemy";
     }
 }
 
@@ -11,6 +12,7 @@ class Player{
         this.hp = hp;
         this.dmg = dmg;
         this.name = "Player";
+        this.src = "./char";
     }
     getA(){
         return "alma"
@@ -24,6 +26,7 @@ class Ball{
         this.name = "ball";
         this.dir = dir // 0 - up, 1 - down, 2 - left, 3 - right;
         this.isMoved = false
+        this.src = "./ball";
     }
 }
 
