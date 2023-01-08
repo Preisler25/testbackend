@@ -1,5 +1,5 @@
 //ws
-const ws = new WebSocket('ws://192.168.1.199:8080');
+const ws = new WebSocket('ws://localhost:8080');
 
 
 //ws connection
