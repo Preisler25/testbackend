@@ -127,6 +127,11 @@ wss.on('connection', function connection(ws) {
         ws.send('game ' + JSON.stringify(map));
       }, 50);
 
+      //moving balls every 500ms
+      moveB = setInterval(() => {
+        map = game.moveBalls(map);
+      }, 500);
+
       //moving enemys every second
       moveE = setInterval(() => {
         map, isAlive = game.moveEnemys(map, isAlive);
@@ -140,6 +145,7 @@ wss.on('connection', function connection(ws) {
       ws.send('over');
       clearInterval(sendData);
       clearInterval(moveE);
+      clearInterval(moveB);
     }
   });
 });

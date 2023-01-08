@@ -2,3 +2,9 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
+#cont div{
+    border: 1px solid black;
+    height: 100px;
+    width: 100px;
+    background-color: white;
+}
