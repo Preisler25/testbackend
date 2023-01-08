@@ -23,7 +23,7 @@ class Ball{
         this.dmg = dmg;
         this.name = "ball";
         this.dir = dir // 0 - up, 1 - down, 2 - left, 3 - right;
-        this.isMoved = true
+        this.isMoved = false
     }
 }
 
