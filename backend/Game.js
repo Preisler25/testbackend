@@ -3,7 +3,7 @@ class Enemy{
         this.hp = hp;
         this.dmg = dmg;
         this.name = "Enemy";
-        this.src = "enemy";
+        this.src = "./enemy";
     }
 }
 
@@ -12,7 +12,7 @@ class Player{
         this.hp = hp;
         this.dmg = dmg;
         this.name = "Player";
-        this.src = "user";
+        this.src = "./char";
     }
     getA(){
         return "alma"

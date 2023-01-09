@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 //pg
 const { Client } = require('pg');
-const client = new Client({host: 'localhost',port: 5432,database: 'postgres',user: 'postgres',password: 'admin'});
+const client = new Client({host: 'localhost',port: 5432,database: 'test',user: 'postgres',password: 'admin'});
 client.connect();
 
 //ws
@@ -42,8 +42,8 @@ app.get('/cssG', (req, res) => {res.sendFile(path.join(__dirname, 'public', 'gam
 app.get('/js', (req, res) => {res.sendFile(path.join(__dirname, 'public', 'app.js'));});
 app.get('/users', async(req, res) => {rows = await getUsers();res.send(rows);});
 app.get('/char', (req, res) => {res.sendFile(path.join(__dirname, 'public', 'karakter.png'));});
-app.get('/enemy', (req, res) => {res.sendFile(path.join(__dirname, 'public', 'karakter.png'));});
-app.get('/ball', (req, res) => {res.sendFile(path.join(__dirname, 'public', 'karakter.png'));});
+app.get('/enemy', (req, res) => {res.sendFile(path.join(__dirname, 'public', 'enemy.png'));});
+app.get('/ball', (req, res) => {res.sendFile(path.join(__dirname, 'public', 'ball.png'));});
 
 //HTTP POST
 app.post('/reg', (req, res) => {

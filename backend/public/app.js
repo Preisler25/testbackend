@@ -1,5 +1,5 @@
 //ws
-const ws = new WebSocket('ws://localhost:8080');
+const ws = new WebSocket('ws://192.168.1.199:8080');
 
 
 //ws connection
@@ -12,7 +12,6 @@ ws.onmessage = function (event) {
   switch (event.data.split(' ')[0]) {
     case "game":
         map = JSON.parse(event.data = event.data.split(' ')[1]);
-        console.log(map);
         drawMap(map);
       break;
     case "over":
@@ -53,26 +52,20 @@ fetch('/users')
 //draw map
 function drawMap(map) {
     const mapElement = document.getElementById('cont');
-    const mapTest = document.getElementById('cont3');
-    mapTest.innerHTML = '';
     mapElement.innerHTML = '';
     for (let j = 7; -1 < j; j--) {
         for (let i = 0; i < 8; i++) {
             ij = String(i) + String(j);
             const tileElement = document.createElement('div');
-            const tileElement2 = document.createElement('div');
             if (map[ij] == 0) {
-                tileElement.innerHTML = '';
+                tileElement.innerHTML = '';       
             }
             else{
-                tileElement2.innerHTML = `${map[ij].name}`;
-                let newimg = document.getElementById(`${map[ij].src}`)
-                newimg.style.width = "50px";
-                newimg.style.height = "50px";
-                tileElement.appendChild(newimg);
-                mapTest.appendChild(tileElement2);
+                const newimg = `<img src="${map[ij].src}" alt style="width: 100px; height: 100px;">`;
+                tileElement.innerHTML = newimg;
             }
             mapElement.appendChild(tileElement);
+            
         }
     }
 }
