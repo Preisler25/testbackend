@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 //pg
 const { Client } = require('pg');
-const client = new Client({host: 'localhost',port: 5432,database: 'test',user: 'postgres',password: 'admin'});
+const client = new Client({host: 'localhost',port: 5432,database: 'postgres',user: 'postgres',password: 'admin'});
 client.connect();
 
 //ws
