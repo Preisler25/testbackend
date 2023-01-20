@@ -1,6 +1,8 @@
 //ws
 const ws = new WebSocket('ws://192.168.1.199:8080');
 
+//socket
+    let socket = io();
 
 //ws connection
 ws.onopen = function () {

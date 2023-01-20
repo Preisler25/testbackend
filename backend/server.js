@@ -17,6 +17,12 @@ const { Client } = require('pg');
 const client = new Client({host: 'localhost',port: 5432,database: 'test',user: 'postgres',password: 'admin'});
 client.connect();
 
+//io
+const http = require('http');
+const server = http.createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(server);
+
 //ws
 const WebSocket = require('ws');
 const wss = new WebSocket.Server({ port: 8080 });
@@ -58,6 +64,11 @@ app.post('/reg', (req, res) => {
   } else {
     console.log(result);
   }});
+});
+
+//TEST
+io.on('connection', (socket) => {
+  console.log('a user connected');
 });
 
 //Game
